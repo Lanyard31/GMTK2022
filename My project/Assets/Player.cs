@@ -12,11 +12,13 @@ public class Player : MonoBehaviour
     float accelerationInput = 0;
     float steeringInput = 0;
 
-    float rotationAngle = 0f;
+    public float rotationAngle = 0f;
 
     float velocityVsUp = 0;
 
     Rigidbody2D carRigidBody2D;
+
+    public float rotationAngleClamped; 
 
 
     void Awake()
@@ -75,7 +77,30 @@ public class Player : MonoBehaviour
 
         rotationAngle -= steeringInput * turnFactor * minSpeedBeforeAllowTurningFactor;
 
+        // Calculate Clamped Rotation
+        if (rotationAngle > 360)
+        {
+            rotationAngle = rotationAngle - 360;
+        }
+
+        if (rotationAngle < 0)
+        {
+            rotationAngle = rotationAngle + 360;
+        }
+
+        /*
+        { 
+            float tempRotation;
+            tempRotation = rotationAngle - 360;
+            
+            
+            
+            rotationAngleClamped = rotationAngle;
+        }
+        */
+
         carRigidBody2D.MoveRotation(rotationAngle);
+
     }
 
     void KillOrthogonalVelocity()
