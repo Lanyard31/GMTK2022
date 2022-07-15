@@ -88,16 +88,7 @@ public class Player : MonoBehaviour
             rotationAngle = rotationAngle + 360;
         }
 
-        /*
-        { 
-            float tempRotation;
-            tempRotation = rotationAngle - 360;
-            
-            
-            
-            rotationAngleClamped = rotationAngle;
-        }
-        */
+
 
         carRigidBody2D.MoveRotation(rotationAngle);
 
