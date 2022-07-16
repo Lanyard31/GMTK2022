@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthbarSprite: {fileID: 1055303697}
+  background: {fileID: 2126431204}
+  reduceSpeed: 2
 --- !u!114 &235232760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,7 +904,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 0.794
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
