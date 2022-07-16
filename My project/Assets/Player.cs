@@ -9,16 +9,21 @@ public class Player : MonoBehaviour
     public float turnFactor = 3.5f;
     public float maxSpeed = 20;
 
+    bool drift = false;
+    bool flipping = false;
+
     float accelerationInput = 0;
     float steeringInput = 0;
 
     public float rotationAngle = 0f;
 
     float velocityVsUp = 0;
+    float driftCounter;
 
     Rigidbody2D carRigidBody2D;
 
-    public float rotationAngleClamped; 
+    public float rotationAngleClamped;
+    public float flipThreshold = 1;
 
 
     void Awake()
@@ -28,13 +33,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -42,6 +47,8 @@ public class Player : MonoBehaviour
         ApplyEngineForce();
 
         KillOrthogonalVelocity();
+
+        CheckDrift();
 
         ApplySteering();
     }
@@ -107,6 +114,42 @@ public class Player : MonoBehaviour
         steeringInput = InputVector.x;
         accelerationInput = InputVector.y;
     }
+
+
+    public void Drift()
+    {
+        drift = true;
+    }
+
+    public void DriftOff()
+    {
+        drift = false;
+    }
+
+    public void CheckDrift()
+    {
+        if (drift == true)
+        {
+            turnFactor = 8;
+            driftCounter = driftCounter + Time.fixedDeltaTime;
+            if (driftCounter > flipThreshold)
+            {
+                flipping = true;
+                Debug.Log("Currently Flipping");
+                // Play Flipping Animation here, at end of animation, set Flipping to False
+            }
+        }
+
+        if (drift == false)
+        {
+            driftCounter = 0f;
+            turnFactor = 3.5f;
+        }
+
+    }
+
+
+
 
 
 

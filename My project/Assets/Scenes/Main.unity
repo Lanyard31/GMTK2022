@@ -222,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampTime: 0.15
   target: {fileID: 998981934}
-  CameraFollowEnabled: 0
+  CameraFollowEnabled: 1
 --- !u!1001 &998981933
 PrefabInstance:
   m_ObjectHideFlags: 0

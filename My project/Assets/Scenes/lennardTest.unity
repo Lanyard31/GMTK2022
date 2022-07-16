@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2324772823221924632, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
+      propertyPath: flipThreshold
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2324772823221924633, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -282,9 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773b486f604134c41acb443e0c84c69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampTime: 0.4
+  dampTime: 0.6
   target: {fileID: 1180765902}
-  CameraFollowEnabled: 0
+  CameraFollowEnabled: 1
 --- !u!1001 &2061446423
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,6 +23,13 @@ public class CarInputHandler : MonoBehaviour
 
         player.SetInputVector(InputVector);
 
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Submit"))
+            player.Drift();
+
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Submit"))
+        {
+            player.DriftOff();
+        }
 
     }
 }
