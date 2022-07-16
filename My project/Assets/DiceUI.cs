@@ -79,8 +79,8 @@ public class DiceUI : MonoBehaviour
             spriteRenderer2.sprite = spritelist[5];
 
 
-        Invoke("Scale1", 0.0f);
-        Invoke("Scale2", 0.1f);
+        //Invoke("Scale1", 0.0f);
+        //Invoke("Scale2", 0.1f);
 
     }
     /*

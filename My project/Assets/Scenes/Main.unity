@@ -1118,6 +1118,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1699342249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1946300231348438299, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
+  m_PrefabInstance: {fileID: 2100364749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1715415463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,6 +1355,10 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2324772823221924632, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
+      propertyPath: particleShield
+      value: 
+      objectReference: {fileID: 1699342249}
     - target: {fileID: 2324772823221924633, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
       propertyPath: m_RootOrder
       value: 1

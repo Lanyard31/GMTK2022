@@ -46,6 +46,10 @@ public class Player : MonoBehaviour
     public string Ability1;
     public string Ability2;
 
+    public GameObject particleShield;
+    ParticleSystem particleSystemShield;
+    ParticleSystem.EmissionModule particleSystemEmissionModuleShield;
+
 
 
     void Awake()
@@ -54,6 +58,11 @@ public class Player : MonoBehaviour
         diceRoll = FindObjectOfType<DiceRoll>();
         anim = GetComponent<Animator>();
         diceUI = FindObjectOfType<DiceUI>();
+        particleSystemShield = particleShield.GetComponent<ParticleSystem>();
+        particleSystemEmissionModuleShield = particleSystemShield.emission;
+
+
+        ShieldsDown();
 
     }
 
@@ -341,6 +350,8 @@ public class Player : MonoBehaviour
     {
         float Dice1 = diceRoll.Dice1;
         float Dice2 = diceRoll.Dice2;
+        ShieldsDown();
+
 
         if (Dice1 == 1)
         {
@@ -357,6 +368,7 @@ public class Player : MonoBehaviour
         if (Dice1 == 4)
         {
             Ability1 = "Shield";
+            ShieldsUp();
         }
         if (Dice1 == 5)
         {
@@ -397,7 +409,18 @@ public class Player : MonoBehaviour
 
     }
 
+    public void ShieldsUp()
+    {
+        shielded = true;
+        particleSystemEmissionModuleShield.rateOverTime = 100;
 
+    }
 
+    public void ShieldsDown()
+    {
+        shielded = false;
+        particleSystemEmissionModuleShield.rateOverTime = 0;
+
+    }
 
 }
