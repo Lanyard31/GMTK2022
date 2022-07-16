@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
     bool drift = false;
     public bool flipping = false;
+    bool boostApplied;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -59,6 +60,8 @@ public class Player : MonoBehaviour
 
         CheckDrift();
 
+        CheckFlip();
+
         ApplySteering();
     }
 
@@ -91,7 +94,12 @@ public class Player : MonoBehaviour
         float minSpeedBeforeAllowTurningFactor = (carRigidBody2D.velocity.magnitude / 8);
         minSpeedBeforeAllowTurningFactor = Mathf.Clamp01(minSpeedBeforeAllowTurningFactor);
 
+        if (flipping == true)
+            return;
+
         rotationAngle -= steeringInput * turnFactor * minSpeedBeforeAllowTurningFactor;
+
+
 
         // Calculate Clamped Rotation
         if (rotationAngle > 360)
@@ -147,6 +155,7 @@ public class Player : MonoBehaviour
                 Debug.Log("Currently Flipping");
                 // Play Flipping Animation here, at end of animation, set Flipping to False, and call DiceRoll.RollNew
                 Invoke("EndFlip", flipDuration);
+                
             }
         }
 
@@ -158,9 +167,29 @@ public class Player : MonoBehaviour
 
     }
 
+
+    public void CheckFlip()
+    {
+        if (flipping == true)
+        {
+            ApplyFlipBoost();
+        }
+    }
+
+    public void ApplyFlipBoost()
+    {
+        boostApplied = true;
+        Vector2 engineForceVector = transform.up * accelerationInput * accelerationFactor;
+        engineForceVector.x = engineForceVector.x * -0.05f;
+        engineForceVector.x = engineForceVector.y * -0.05f;
+        carRigidBody2D.AddForce(engineForceVector, ForceMode2D.Force);
+    }
+
     public void EndFlip()
     {
         flipping = false;
+        drift = false;
+        boostApplied = false;
     }
 
 

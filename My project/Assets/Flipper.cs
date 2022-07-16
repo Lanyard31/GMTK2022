@@ -32,10 +32,14 @@ public class Flipper : MonoBehaviour
             spriteRenderer.enabled = true;
             anim.enabled = true;
             rot = player.rotationAngle;
-            if (rot >= 0 && rot < 180)
-                anim.Play("LeftFlip");
-            if (rot >= 180 && rot < 360)
-                anim.Play("RightFlip");
+            if (rot >= 0 && rot < 90)
+                anim.Play("flipUpLeft");
+            if (rot >= 270 && rot < 360)
+                anim.Play("flipUpRight");
+            if (rot >= 180 && rot < 270)
+                anim.Play("flipDownRight");
+            if (rot >= 90 && rot < 180)
+                anim.Play("flipDownLeft");
         }
     }
 

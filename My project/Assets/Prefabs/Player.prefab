@@ -236,7 +236,8 @@ MonoBehaviour:
   flipping: 0
   rotationAngle: 0
   rotationAngleClamped: 0
-  flipThreshold: 1
+  flipThreshold: 0.5
+  flipDuration: 1
 --- !u!50 &2324772823221924635
 Rigidbody2D:
   serializedVersion: 4
