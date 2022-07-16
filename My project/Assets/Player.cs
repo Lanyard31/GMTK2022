@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float bounceFactor = 3.5f;
     public float flipBoost = 4.5f;
 
+    int playerHP = 100;
+
     bool drift = false;
     public bool flipping = false;
     bool boostApplied;
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
     bool diceRolled;
     bool flipReset;
     bool jumpMax;
+    bool shielded;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -38,6 +41,10 @@ public class Player : MonoBehaviour
     public float flipDuration = 1;
     DiceRoll diceRoll;
     Animator anim;
+    DiceUI diceUI;
+
+    public string Ability1;
+    public string Ability2;
 
 
 
@@ -46,6 +53,7 @@ public class Player : MonoBehaviour
         carRigidBody2D = GetComponent<Rigidbody2D>();
         diceRoll = FindObjectOfType<DiceRoll>();
         anim = GetComponent<Animator>();
+        diceUI = FindObjectOfType<DiceUI>();
 
     }
 
@@ -286,6 +294,7 @@ public class Player : MonoBehaviour
         drift = false;
         boostApplied = false;
         jumpMax = false;
+        Invoke("AbilityCheck", 0.2f);
 
     }
 
@@ -299,6 +308,8 @@ public class Player : MonoBehaviour
             bounceVector.x = contact.normal.x * bounceFactor;
             bounceVector.y = contact.normal.y * bounceFactor;
             carRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
+            PlayerDamage(10);
+
 
 
             if (collision.transform.tag == "Jelly")
@@ -309,6 +320,83 @@ public class Player : MonoBehaviour
 
         }
     }
+    public void PlayerDamage(int damage)
+    {
+        if (shielded == true)
+        {
+            return;
+        }
+        if (drift == true)
+        {
+            return;
+        }
+        if (shielded == false)
+        {
+            playerHP -= damage;
+        }
+
+    }
+
+    public void AbilityCheck()
+    {
+        float Dice1 = diceRoll.Dice1;
+        float Dice2 = diceRoll.Dice1;
+
+        if (Dice1 == 1)
+        {
+            Ability1 = "WreckingBall";
+        }
+        if (Dice1 == 2)
+        {
+            Ability1 = "Shotgun";
+        }
+        if (Dice1 == 3)
+        {
+            Ability1 = "FlameTrail";
+        }
+        if (Dice1 == 4)
+        {
+            Ability1 = "Shield";
+        }
+        if (Dice1 == 5)
+        {
+            Ability1 = "Nova";
+        }
+        if (Dice1 == 6)
+        {
+            Ability1 = "PowerSlide";
+        }
+
+
+        if (Dice2 == 1)
+        {
+            Ability2 = "WreckingBall";
+        }
+        if (Dice2 == 2)
+        {
+            Ability2 = "Shotgun";
+        }
+        if (Dice2 == 3)
+        {
+            Ability2 = "FlameTrail";
+        }
+        if (Dice2 == 4)
+        {
+            Ability2 = "Shield";
+        }
+        if (Dice2 == 5)
+        {
+            Ability2 = "Nova";
+        }
+        if (Dice2 == 6)
+        {
+            Ability2 = "PowerSlide";
+        }
+
+        diceUI.SetAbilities();
+
+    }
+
 
 
 

@@ -33,6 +33,7 @@ public class DiceRoll : MonoBehaviour
     }
 
 
+
     public void DiceCooldown()
     {
         rollable = true;

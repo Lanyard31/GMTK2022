@@ -8,6 +8,8 @@ public class DiceUI : MonoBehaviour
     Player player;
     DiceRoll diceRoll;
     Animator anim;
+    public Sprite[] spritelist;
+    SpriteRenderer spriteRenderer;
 
     bool rollOnce = false;
 
@@ -31,5 +33,10 @@ public class DiceUI : MonoBehaviour
             anim.Play("diceRoll");
             rollOnce = false;
         }
+    }
+
+    public void SetAbilities()
+    {
+        //player.Ability1
     }
 }
