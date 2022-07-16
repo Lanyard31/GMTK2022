@@ -232,7 +232,6 @@ public class Player : MonoBehaviour
 
     public void CheckFlip()
     {
-        Debug.Log(flipping);
         if (flipping == false)
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -300,6 +299,13 @@ public class Player : MonoBehaviour
             bounceVector.x = contact.normal.x * bounceFactor;
             bounceVector.y = contact.normal.y * bounceFactor;
             carRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
+
+
+            if (collision.transform.tag == "Jelly")
+            {
+                var collider = collision.gameObject.GetComponent<Jelly>();
+                collider.TakeDamage();
+            }
 
         }
     }

@@ -34,7 +34,7 @@ public class WheelParticleHandler : MonoBehaviour
         {
             if (isBraking)
             {
-                particleEmissionRate = 20;
+                particleEmissionRate = 40;
             }
             else particleEmissionRate = Mathf.Abs(lateralVelocity) * 2;
         }
