@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float maxSpeed = 20;
 
     bool drift = false;
-    bool flipping = false;
+    public bool flipping = false;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -20,11 +20,15 @@ public class Player : MonoBehaviour
     float velocityVsUp = 0;
     float driftCounter;
 
+    private float rot;
+
     Rigidbody2D carRigidBody2D;
 
     public float rotationAngleClamped;
     public float flipThreshold = 1;
+    public float flipDuration = 1;
     DiceRoll diceRoll;
+    Animator anim;
 
 
 
@@ -32,6 +36,8 @@ public class Player : MonoBehaviour
     {
         carRigidBody2D = GetComponent<Rigidbody2D>();
         diceRoll = FindObjectOfType<DiceRoll>();
+        anim = GetComponent<Animator>();
+
     }
 
     void Start()
@@ -140,7 +146,7 @@ public class Player : MonoBehaviour
                 flipping = true;
                 Debug.Log("Currently Flipping");
                 // Play Flipping Animation here, at end of animation, set Flipping to False, and call DiceRoll.RollNew
-                diceRoll.RollNew();
+                Invoke("EndFlip", flipDuration);
             }
         }
 
@@ -152,7 +158,10 @@ public class Player : MonoBehaviour
 
     }
 
-
+    public void EndFlip()
+    {
+        flipping = false;
+    }
 
 
 

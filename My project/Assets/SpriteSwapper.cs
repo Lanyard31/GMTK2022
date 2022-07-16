@@ -15,7 +15,7 @@ public class SpriteSwapper : MonoBehaviour
 
     void Start()
     {
-        //player = FindObjectOfType<Player>();
+        player = FindObjectOfType<Player>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         quat = transform.rotation;
     }
@@ -23,8 +23,14 @@ public class SpriteSwapper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = FindObjectOfType<Player>();
+        //player = FindObjectOfType<Player>();
         rot = player.rotationAngle;
+        if (player.flipping == true)
+            spriteRenderer.enabled = false;
+        if (player.flipping == false)
+            spriteRenderer.enabled = true;
+         
+
         if (rot > 0 && rot < 11.25)
         {
             spriteRenderer.sprite = spritelist[0];
