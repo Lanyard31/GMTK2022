@@ -5124,12 +5124,7 @@ MonoBehaviour:
   flipDuration: 1
   Ability1: 
   Ability2: 
-<<<<<<< Updated upstream
   particleShield: {fileID: 0}
-=======
-  particleShield: {fileID: 1946300231348438299}
-  playerHealthBar: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!50 &2324772823221924635
 Rigidbody2D:
   serializedVersion: 4

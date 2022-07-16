@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public float bounceFactor = 3.5f;
     public float flipBoost = 4.5f;
 
-    int maxHealth = 100;
     int playerHP = 100;
 
     bool drift = false;
@@ -51,8 +50,6 @@ public class Player : MonoBehaviour
     ParticleSystem particleSystemShield;
     ParticleSystem.EmissionModule particleSystemEmissionModuleShield;
 
-    PlayerHealthBar playerHealthBar;
-
 
 
     void Awake()
@@ -61,7 +58,6 @@ public class Player : MonoBehaviour
         diceRoll = FindObjectOfType<DiceRoll>();
         anim = GetComponent<Animator>();
         diceUI = FindObjectOfType<DiceUI>();
-        playerHealthBar = FindObjectOfType<PlayerHealthBar>();
         particleSystemShield = particleShield.GetComponent<ParticleSystem>();
         particleSystemEmissionModuleShield = particleSystemShield.emission;
 
@@ -343,12 +339,10 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (shielded == false && drift == false)
+        if (shielded == false)
         {
             playerHP -= damage;
         }
-
-        playerHealthBar.UpdateHealthBar(maxHealth, playerHP);
 
     }
 
