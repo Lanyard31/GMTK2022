@@ -139,6 +139,35 @@ public class Player : MonoBehaviour
         }
     }
 
+    float GetLateralVelocity()
+    {
+        return Vector2.Dot(transform.right, carRigidBody2D.velocity);
+    }
+
+    public bool IsTireScreeching(out float lateralVelocity, out bool isBraking)
+    {
+        lateralVelocity = GetLateralVelocity();
+        isBraking = false;
+        if (flipping == true)
+        {
+            return false;
+        }
+        if (accelerationInput < 0 && velocityVsUp > 0)
+        {
+            isBraking = true;
+            return true;
+        }
+
+
+        if (Mathf.Abs(GetLateralVelocity()) > 3.5f)
+            return true;
+
+        return false;
+
+    }
+
+
+
     public void SetInputVector(Vector2 InputVector)
     {
         steeringInput = InputVector.x;
@@ -248,24 +277,7 @@ public class Player : MonoBehaviour
            
         }
     }
-    /*
-    Vector2 rotateToLeft(Vector2 vec)
-    {
 
-        return new Vector2(vec.y * -1.0f, vec.x).normalized;
-
-    }
-
-
-
-    Vector2 rotateToRight(Vector2 vec)
-    {
-
-        return new Vector2(vec.y, vec.x * -1.0f).normalized;
-
-    }
-
-    */
 
     public void EndFlip()
     {
@@ -280,7 +292,6 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //Destroy(gameObject);
         // Debug-draw all contact points and normals
         foreach (ContactPoint2D contact in collision.contacts)
         {
@@ -292,6 +303,7 @@ public class Player : MonoBehaviour
 
         }
     }
+
 
 
 }
