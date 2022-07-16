@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
     public float accelerationFactor = 30f;
     public float turnFactor = 3.5f;
     public float maxSpeed = 20;
+    public float bounceFactor = 3.5f;
 
     bool drift = false;
     public bool flipping = false;
     bool boostApplied;
     bool wheelChecked;
     bool turningRight;
+    bool diceRolled;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -143,7 +145,12 @@ public class Player : MonoBehaviour
 
     public void Drift()
     {
-        drift = true;
+        
+        if (carRigidBody2D.velocity.magnitude > 4f)
+        {
+            drift = true;
+        }
+        
     }
 
     public void DriftOff()
@@ -160,7 +167,7 @@ public class Player : MonoBehaviour
             if (driftCounter > flipThreshold)
             {
                 flipping = true;
-                Debug.Log("Currently Flipping");
+                //Debug.Log("Currently Flipping");
                 // Play Flipping Animation here, at end of animation, set Flipping to False, and call DiceRoll.RollNew
                 Invoke("EndFlip", flipDuration);
 
@@ -190,40 +197,38 @@ public class Player : MonoBehaviour
 
     public void CheckFlip()
     {
-        if (flipping == true)
+        if (flipping == false)
         {
+
             //ApplyFlipBoost();
         }
     }
 
-    /*
-    public void ApplyFlipBoost()
-    {
-        boostApplied = true;
-        Vector2 engineForceVector = transform.up * accelerationInput * accelerationFactor;
-        if (turningRight == true)
-        {
-            float _angle = 90f;
-            engineForceVector = Quaternion.AngleAxis(_angle, Vector2.up); //* normalizedDirection;
-            //engineForceVector = engineForceVector * Quaternion.Euler(0, 0, 90f);
-            engineForceVector.x = engineForceVector.x * -0.05f;
-        }
-        else
-        {
-            engineForceVector.x = engineForceVector.y * -0.05f;
-        }
-        carRigidBody2D.AddForce(engineForceVector, ForceMode2D.Force);
-    }
-    */
+
 
     public void EndFlip()
     {
+        diceRoll.RollNew();
         flipping = false;
         drift = false;
         boostApplied = false;
+
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Destroy(gameObject);
+        // Debug-draw all contact points and normals
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            Debug.DrawRay(contact.point, contact.normal, Color.red);
+            Vector2 bounceVector = contact.normal;
+            bounceVector.x = contact.normal.x * bounceFactor;
+            bounceVector.y = contact.normal.y * bounceFactor;
+            carRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
 
+        }
+    }
 
 
 }
