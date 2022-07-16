@@ -28,6 +28,10 @@ public class DiceRoll : MonoBehaviour
             rollable = false;
             Dice1 = Random.Range(1, 7);
             Dice2 = Random.Range(1, 7);
+            while (Dice2 == Dice1)
+            {
+                Dice2 = Random.Range(1, 7);
+            }
             Invoke("DiceCooldown", 0.5f);
         }
     }

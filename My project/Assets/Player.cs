@@ -340,7 +340,7 @@ public class Player : MonoBehaviour
     public void AbilityCheck()
     {
         float Dice1 = diceRoll.Dice1;
-        float Dice2 = diceRoll.Dice1;
+        float Dice2 = diceRoll.Dice2;
 
         if (Dice1 == 1)
         {
