@@ -147,7 +147,7 @@ SpriteRenderer:
   m_Size: {x: 2.23, y: 1.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2324772823878252150
@@ -232,7 +232,7 @@ MonoBehaviour:
   driftFactor: 0.95
   accelerationFactor: 15
   turnFactor: 3.5
-  maxSpeed: 5
+  maxSpeed: 5.5
   flipping: 0
   rotationAngle: 0
   rotationAngleClamped: 0

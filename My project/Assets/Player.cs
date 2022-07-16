@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     bool drift = false;
     public bool flipping = false;
     bool boostApplied;
+    bool wheelChecked;
+    bool turningRight;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
     float driftCounter;
 
     private float rot;
+    private float lastrot;
 
     Rigidbody2D carRigidBody2D;
 
@@ -59,6 +62,8 @@ public class Player : MonoBehaviour
         KillOrthogonalVelocity();
 
         CheckDrift();
+
+        CheckWheel();
 
         CheckFlip();
 
@@ -120,10 +125,13 @@ public class Player : MonoBehaviour
 
     void KillOrthogonalVelocity()
     {
-        Vector2 forwardVelocity = transform.up * Vector2.Dot(carRigidBody2D.velocity, transform.up);
-        Vector2 rightVelocity = transform.right * Vector2.Dot(carRigidBody2D.velocity, transform.right);
+        if (flipping == false)
+        {
+            Vector2 forwardVelocity = transform.up * Vector2.Dot(carRigidBody2D.velocity, transform.up);
+            Vector2 rightVelocity = transform.right * Vector2.Dot(carRigidBody2D.velocity, transform.right);
 
-        carRigidBody2D.velocity = forwardVelocity + rightVelocity * driftFactor;
+            carRigidBody2D.velocity = forwardVelocity + rightVelocity * driftFactor;
+        }
     }
 
     public void SetInputVector(Vector2 InputVector)
@@ -155,7 +163,7 @@ public class Player : MonoBehaviour
                 Debug.Log("Currently Flipping");
                 // Play Flipping Animation here, at end of animation, set Flipping to False, and call DiceRoll.RollNew
                 Invoke("EndFlip", flipDuration);
-                
+
             }
         }
 
@@ -167,23 +175,46 @@ public class Player : MonoBehaviour
 
     }
 
+    public void CheckWheel()
+    {
+        if (lastrot > rot)
+        {
+            turningRight = true;
+        }
+        if (lastrot < rot)
+        {
+            turningRight = false;
+        }
+        lastrot = rot;
+    }
 
     public void CheckFlip()
     {
         if (flipping == true)
         {
-            ApplyFlipBoost();
+            //ApplyFlipBoost();
         }
     }
 
+    /*
     public void ApplyFlipBoost()
     {
         boostApplied = true;
         Vector2 engineForceVector = transform.up * accelerationInput * accelerationFactor;
-        engineForceVector.x = engineForceVector.x * -0.05f;
-        engineForceVector.x = engineForceVector.y * -0.05f;
+        if (turningRight == true)
+        {
+            float _angle = 90f;
+            engineForceVector = Quaternion.AngleAxis(_angle, Vector2.up); //* normalizedDirection;
+            //engineForceVector = engineForceVector * Quaternion.Euler(0, 0, 90f);
+            engineForceVector.x = engineForceVector.x * -0.05f;
+        }
+        else
+        {
+            engineForceVector.x = engineForceVector.y * -0.05f;
+        }
         carRigidBody2D.AddForce(engineForceVector, ForceMode2D.Force);
     }
+    */
 
     public void EndFlip()
     {
