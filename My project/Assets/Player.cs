@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     bool turningRight;
     bool diceRolled;
     bool flipReset;
+    bool jumpMax;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -197,19 +198,40 @@ public class Player : MonoBehaviour
             turningRight = false;
         }
 
-        Debug.Log(lastrot);
-        Debug.Log(turningRight);
-
         lastrot = rot;
     }
 
     public void CheckFlip()
     {
+        Debug.Log(flipping);
+        if (flipping == false)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
         if (flipping == true)
         {
-            //Applies Flip Boost
+            //Applies Scaling
+            if (transform.localScale.x < 1.20f)
+            {
+                transform.localScale = transform.localScale * 1.01f;
+            }
+            if (transform.localScale.x >= 1.20f)
+            {
+                jumpMax = true;
+            }
+            if (transform.localScale.x < 1f)
+                return;
 
-            if (turningRight == true && flipReset == false)
+            if (jumpMax == true)
+            {
+                transform.localScale = transform.localScale * 0.95f;
+            }
+
+
+
+                //Applies Flip Boost
+                if (turningRight == true && flipReset == false)
             {
                 Vector2 vec = carRigidBody2D.velocity;
                 vec = new Vector2(vec.y, vec.x * -1.0f).normalized * -flipBoost;
@@ -252,6 +274,7 @@ public class Player : MonoBehaviour
         flipReset = false;
         drift = false;
         boostApplied = false;
+        jumpMax = false;
 
     }
 

@@ -20,6 +20,10 @@ public class CarInputHandler : MonoBehaviour
 
         InputVector.x = Input.GetAxis("Horizontal");
         InputVector.y = Input.GetAxis("Vertical");
+        if (InputVector.y < 0)
+        {
+            InputVector.x = -Input.GetAxis("Horizontal");
+        }
 
         player.SetInputVector(InputVector);
         

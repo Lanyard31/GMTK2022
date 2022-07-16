@@ -233,10 +233,12 @@ MonoBehaviour:
   accelerationFactor: 10
   turnFactor: 3.5
   maxSpeed: 5.5
+  bounceFactor: 3.5
+  flipBoost: 4.5
   flipping: 0
   rotationAngle: 0
   rotationAngleClamped: 0
-  flipThreshold: 0.5
+  flipThreshold: 0.6
   flipDuration: 1
 --- !u!50 &2324772823221924635
 Rigidbody2D:
