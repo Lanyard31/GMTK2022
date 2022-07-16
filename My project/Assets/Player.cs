@@ -11,7 +11,9 @@ public class Player : MonoBehaviour
     public float bounceFactor = 3.5f;
     public float flipBoost = 4.5f;
 
+    int maxHealth = 100;
     int playerHP = 100;
+    playerHealthBar _playerHealthBar;
 
     bool drift = false;
     public bool flipping = false;
@@ -60,6 +62,7 @@ public class Player : MonoBehaviour
         diceUI = FindObjectOfType<DiceUI>();
         particleSystemShield = particleShield.GetComponent<ParticleSystem>();
         particleSystemEmissionModuleShield = particleSystemShield.emission;
+        _playerHealthBar = FindObjectOfType<playerHealthBar>();
 
 
         ShieldsDown();
@@ -212,7 +215,11 @@ public class Player : MonoBehaviour
         if (drift == true)
         {
             turnFactor = 8;
-            driftCounter = driftCounter + Time.fixedDeltaTime;
+            if (steeringInput != 0)
+            {
+                driftCounter = driftCounter + Time.fixedDeltaTime;
+            }
+
             if (driftCounter > flipThreshold)
             {
                 flipping = true;
@@ -335,15 +342,16 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (drift == true)
+        if (drift == true )
         {
             return;
         }
-        if (shielded == false)
+        if (shielded == false && drift == false)
         {
             playerHP -= damage;
         }
-
+        //Debug.Log(playerHP);
+        _playerHealthBar.UpdateHealthBar(maxHealth, playerHP);
     }
 
     public void AbilityCheck()
