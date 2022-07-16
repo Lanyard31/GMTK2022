@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float turnFactor = 3.5f;
     public float maxSpeed = 20;
     public float bounceFactor = 3.5f;
+    public float flipBoost = 4.5f;
 
     bool drift = false;
     public bool flipping = false;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     bool wheelChecked;
     bool turningRight;
     bool diceRolled;
+    bool flipReset;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -184,6 +186,8 @@ public class Player : MonoBehaviour
 
     public void CheckWheel()
     {
+        rot = rotationAngle;
+
         if (lastrot > rot)
         {
             turningRight = true;
@@ -192,24 +196,60 @@ public class Player : MonoBehaviour
         {
             turningRight = false;
         }
+
+        Debug.Log(lastrot);
+        Debug.Log(turningRight);
+
         lastrot = rot;
     }
 
     public void CheckFlip()
     {
-        if (flipping == false)
+        if (flipping == true)
         {
+            //Applies Flip Boost
 
-            //ApplyFlipBoost();
+            if (turningRight == true && flipReset == false)
+            {
+                Vector2 vec = carRigidBody2D.velocity;
+                vec = new Vector2(vec.y, vec.x * -1.0f).normalized * -flipBoost;
+                carRigidBody2D.AddForce(vec, ForceMode2D.Impulse);
+                flipReset = true;
+            }
+            if (turningRight == false && flipReset == false)
+            {
+                Vector2 vec = carRigidBody2D.velocity;
+                vec = new Vector2(vec.y * -1.0f, vec.x).normalized * -flipBoost;
+                carRigidBody2D.AddForce(vec, ForceMode2D.Impulse);
+                flipReset = true;
+            }
+           
         }
+    }
+    /*
+    Vector2 rotateToLeft(Vector2 vec)
+    {
+
+        return new Vector2(vec.y * -1.0f, vec.x).normalized;
+
     }
 
 
+
+    Vector2 rotateToRight(Vector2 vec)
+    {
+
+        return new Vector2(vec.y, vec.x * -1.0f).normalized;
+
+    }
+
+    */
 
     public void EndFlip()
     {
         diceRoll.RollNew();
         flipping = false;
+        flipReset = false;
         drift = false;
         boostApplied = false;
 
