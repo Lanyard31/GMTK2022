@@ -24,11 +24,14 @@ public class Player : MonoBehaviour
 
     public float rotationAngleClamped;
     public float flipThreshold = 1;
+    DiceRoll diceRoll;
+
 
 
     void Awake()
     {
         carRigidBody2D = GetComponent<Rigidbody2D>();
+        diceRoll = FindObjectOfType<DiceRoll>();
     }
 
     void Start()
@@ -136,7 +139,8 @@ public class Player : MonoBehaviour
             {
                 flipping = true;
                 Debug.Log("Currently Flipping");
-                // Play Flipping Animation here, at end of animation, set Flipping to False
+                // Play Flipping Animation here, at end of animation, set Flipping to False, and call DiceRoll.RollNew
+                diceRoll.RollNew();
             }
         }
 
