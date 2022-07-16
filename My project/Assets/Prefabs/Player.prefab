@@ -5124,6 +5124,7 @@ MonoBehaviour:
   flipDuration: 1
   Ability1: 
   Ability2: 
+  particleShield: {fileID: 0}
 --- !u!50 &2324772823221924635
 Rigidbody2D:
   serializedVersion: 4
@@ -15110,7 +15111,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.91490936, b: 0.63836473, a: 1}
+      maxColor: {r: 0.7169812, g: 0, b: 0.02841255, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -18898,8 +18899,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.5566038, g: 0.43257028, b: 0.008751575, a: 1}
-        key1: {r: 1, g: 0.860304, b: 0.08176094, a: 0}
+        key0: {r: 0.5568628, g: 0.007843143, b: 0.10036025, a: 1}
+        key1: {r: 1, g: 0.34151396, b: 0, a: 0}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
