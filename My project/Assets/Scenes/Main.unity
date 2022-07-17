@@ -1581,6 +1581,18 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 7568431572964928685, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
+      propertyPath: m_Size.x
+      value: 2.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568431572964928685, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
+      propertyPath: m_Size.y
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568431572964928685, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3563d6fa61778bc4992f55973978ae6c, type: 3}
 --- !u!1 &2126431202

@@ -33,13 +33,13 @@ public class Flipper : MonoBehaviour
             anim.enabled = true;
             rot = player.rotationAngle;
             if (rot >= 0 && rot < 90)
-                anim.Play("flipUpLeft");
+                anim.Play("flipUpLeft2");
             if (rot >= 270 && rot < 360)
-                anim.Play("flipUpRight");
+                anim.Play("flipUpRight2");
             if (rot >= 180 && rot < 270)
-                anim.Play("flipDownRight");
+                anim.Play("flipDownRight2");
             if (rot >= 90 && rot < 180)
-                anim.Play("flipDownLeft");
+                anim.Play("flipDownLeft2");
         }
     }
 
