@@ -66,7 +66,7 @@ public class Jelly : MonoBehaviour
         }
 
 
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 12)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 10)
         {
             return;
         }
@@ -76,7 +76,7 @@ public class Jelly : MonoBehaviour
         {
             bounceVector = bounceVector.normalized;
             //bounceVector = (target.transform.position, gameObject.transform.position);
-            jellyRigidBody2D.AddForce(bounceVector * 0.05f, ForceMode2D.Impulse);
+            jellyRigidBody2D.AddForce(bounceVector * 0.04f, ForceMode2D.Impulse);
         }
     }
 
