@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     bool flipReset;
     bool jumpMax;
     bool shielded;
+    bool powerSlide;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -52,6 +53,10 @@ public class Player : MonoBehaviour
     ParticleSystem particleSystemShield;
     ParticleSystem.EmissionModule particleSystemEmissionModuleShield;
 
+    public GameObject powerSlideGO;
+    ParticleSystem particleSystemSlide;
+    ParticleSystem.EmissionModule particleSystemEmissionModuleSlide;
+
 
 
     void Awake()
@@ -60,8 +65,13 @@ public class Player : MonoBehaviour
         diceRoll = FindObjectOfType<DiceRoll>();
         anim = GetComponent<Animator>();
         diceUI = FindObjectOfType<DiceUI>();
+
         particleSystemShield = particleShield.GetComponent<ParticleSystem>();
         particleSystemEmissionModuleShield = particleSystemShield.emission;
+
+        particleSystemSlide = powerSlideGO.GetComponent<ParticleSystem>();
+        particleSystemEmissionModuleSlide = particleSystemSlide.emission;
+
         _playerHealthBar = FindObjectOfType<playerHealthBar>();
 
 
@@ -71,7 +81,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        particleSystemEmissionModuleSlide.rateOverTime = 0;
     }
 
     // Update is called once per frame
@@ -93,6 +103,8 @@ public class Player : MonoBehaviour
         CheckFlip();
 
         ApplySteering();
+
+        CheckPowerSlide();
     }
 
     void ApplyEngineForce()
@@ -201,8 +213,23 @@ public class Player : MonoBehaviour
         if (carRigidBody2D.velocity.magnitude > 4f)
         {
             drift = true;
+
+            //PowerSliding
+            if (powerSlide == true)
+            {
+                particleSystemEmissionModuleSlide.rateOverTime = 100;
+            }
+
         }
-        
+
+    }
+
+    public void CheckPowerSlide()
+    {
+        if (powerSlide == false || drift == false)
+        {
+            particleSystemEmissionModuleSlide.rateOverTime = 0;
+        }
     }
 
     public void DriftOff()
@@ -332,6 +359,10 @@ public class Player : MonoBehaviour
             {
                 var collider = collision.gameObject.GetComponent<Jelly>();
                 collider.TakeDamage();
+                if (powerSlide == true)
+                {
+                    collider.TakeDamage();
+                }
             }
 
         }
@@ -359,6 +390,7 @@ public class Player : MonoBehaviour
         float Dice1 = diceRoll.Dice1;
         float Dice2 = diceRoll.Dice2;
         ShieldsDown();
+        powerSlide = false;
 
 
         if (Dice1 == 1)
@@ -385,6 +417,7 @@ public class Player : MonoBehaviour
         if (Dice1 == 6)
         {
             Ability1 = "PowerSlide";
+            powerSlide = true;
         }
 
 
@@ -411,6 +444,7 @@ public class Player : MonoBehaviour
         if (Dice2 == 6)
         {
             Ability2 = "PowerSlide";
+            powerSlide = true;
         }
 
         diceUI.SetAbilities();
@@ -430,5 +464,6 @@ public class Player : MonoBehaviour
         particleSystemEmissionModuleShield.rateOverTime = 0;
 
     }
+
 
 }
