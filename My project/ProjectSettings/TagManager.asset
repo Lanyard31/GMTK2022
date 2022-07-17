@@ -40,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: GroundSquares
+    uniqueID: 4026898821
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &573741455932994605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6447345540927967667}
+  m_Layer: 0
+  m_Name: Shotgun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6447345540927967667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573741455932994605}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4181199, y: 0.009566816, z: -0.01664911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2324772823221924633}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1946300231348438299
 GameObject:
   m_ObjectHideFlags: 0
@@ -5097,6 +5128,7 @@ Transform:
   - {fileID: 993285245603306696}
   - {fileID: 8959810843753828676}
   - {fileID: 1998957823252469137}
+  - {fileID: 6447345540927967667}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5128,6 +5160,8 @@ MonoBehaviour:
   particleShield: {fileID: 1946300231348438299}
   powerSlideGO: {fileID: 5472427633225337658}
   wreckerPrefab: {fileID: 3885758644815055034, guid: 82b0f089d826dfd45b8f334b362188f6, type: 3}
+  projectilePrefab: {fileID: 4785853124982220649, guid: 55c842f3ffa8b0b46bb1ae1b2638b854, type: 3}
+  shotgunPosition: {fileID: 573741455932994605}
 --- !u!50 &2324772823221924635
 Rigidbody2D:
   serializedVersion: 4

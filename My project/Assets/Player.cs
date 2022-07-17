@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     int playerHP = 100;
     playerHealthBar _playerHealthBar;
     int numberOfBalls = 0;
+    int numberOfShells = 0;
 
     bool drift = false;
     public bool flipping = false;
@@ -60,6 +61,8 @@ public class Player : MonoBehaviour
     ParticleSystem.EmissionModule particleSystemEmissionModuleSlide;
 
     public GameObject wreckerPrefab;
+    public GameObject projectilePrefab;
+    public GameObject shotgunPosition;
 
 
 
@@ -343,6 +346,7 @@ public class Player : MonoBehaviour
         jumpMax = false;
         ballSummoned = false;
         DestroyBalls();
+        DestroyShells();
         Invoke("AbilityCheck", 0.2f);
 
     }
@@ -357,7 +361,7 @@ public class Player : MonoBehaviour
             bounceVector.x = contact.normal.x * bounceFactor;
             bounceVector.y = contact.normal.y * bounceFactor;
             carRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
-            PlayerDamage(10);
+            //PlayerDamage(10);
 
 
 
@@ -365,11 +369,14 @@ public class Player : MonoBehaviour
             {
                 var collider = collision.gameObject.GetComponent<Jelly>();
                 collider.TakeDamage();
+                PlayerDamage(10);
                 if (powerSlide == true)
                 {
                     collider.TakeDamage();
                 }
             }
+
+            // Maybe Add for Walls
 
         }
     }
@@ -410,6 +417,7 @@ public class Player : MonoBehaviour
         if (Dice1 == 2)
         {
             Ability1 = "Shotgun";
+            FireShotgun();
         }
         if (Dice1 == 3)
         {
@@ -442,6 +450,7 @@ public class Player : MonoBehaviour
         if (Dice2 == 2)
         {
             Ability2 = "Shotgun";
+            FireShotgun();
         }
         if (Dice2 == 3)
         {
@@ -496,6 +505,23 @@ public class Player : MonoBehaviour
         GameObject wrecker = GameObject.FindWithTag("Wrecker");
         Destroy(wrecker);
         numberOfBalls = 0;
+    }
+
+
+    public void FireShotgun()
+    {
+        if (numberOfShells < 8)
+        {
+            numberOfShells += 1;
+            GameObject Shotgun = new GameObject("Shotgun");
+            Vector3 objectPOS = shotgunPosition.transform.position;
+            GameObject newGameObject = Instantiate(projectilePrefab, objectPOS, Quaternion.identity);
+        }
+    }
+
+    public void DestroyShells()
+    {
+        numberOfShells = 0;
     }
 
 
