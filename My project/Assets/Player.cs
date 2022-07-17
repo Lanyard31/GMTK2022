@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     int maxHealth = 100;
     int playerHP = 100;
     playerHealthBar _playerHealthBar;
+    int numberOfBalls = 0;
 
     bool drift = false;
     public bool flipping = false;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     bool jumpMax;
     bool shielded;
     bool powerSlide;
+    bool ballSummoned;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -56,6 +58,8 @@ public class Player : MonoBehaviour
     public GameObject powerSlideGO;
     ParticleSystem particleSystemSlide;
     ParticleSystem.EmissionModule particleSystemEmissionModuleSlide;
+
+    public GameObject wreckerPrefab;
 
 
 
@@ -337,6 +341,8 @@ public class Player : MonoBehaviour
         drift = false;
         boostApplied = false;
         jumpMax = false;
+        ballSummoned = false;
+        DestroyBalls();
         Invoke("AbilityCheck", 0.2f);
 
     }
@@ -396,6 +402,10 @@ public class Player : MonoBehaviour
         if (Dice1 == 1)
         {
             Ability1 = "WreckingBall";
+            if (numberOfBalls == 0)
+            {
+                SummonWrecker();
+            }
         }
         if (Dice1 == 2)
         {
@@ -424,6 +434,10 @@ public class Player : MonoBehaviour
         if (Dice2 == 1)
         {
             Ability2 = "WreckingBall";
+            if (numberOfBalls == 0)
+            {
+                SummonWrecker();
+            }
         }
         if (Dice2 == 2)
         {
@@ -463,6 +477,25 @@ public class Player : MonoBehaviour
         shielded = false;
         particleSystemEmissionModuleShield.rateOverTime = 0;
 
+    }
+
+    public void SummonWrecker()
+    {
+        if (ballSummoned == false)
+        {
+            ballSummoned = true;
+            numberOfBalls += 1;
+            GameObject Wrecker = new GameObject("Wrecker");
+            Vector3 objectPOS = this.transform.position;
+            GameObject newGameObject = Instantiate(wreckerPrefab, objectPOS, Quaternion.identity);
+        }
+    }
+
+    public void DestroyBalls()
+    {
+        GameObject wrecker = GameObject.FindWithTag("Wrecker");
+        Destroy(wrecker);
+        numberOfBalls = 0;
     }
 
 

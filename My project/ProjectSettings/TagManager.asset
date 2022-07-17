@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Jelly
+  - Wrecker
   layers:
   - Default
   - TransparentFX
