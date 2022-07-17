@@ -40,7 +40,7 @@ public class Wyrm : MonoBehaviour
     {
         Vector2 targetVector = player.transform.position - gameObject.transform.position;
 
-        if (targetVector.y > 0)
+        if (targetVector.x < 0)
         {
             anim.Play("wyrmleft");
         }

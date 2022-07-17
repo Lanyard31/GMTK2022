@@ -56,7 +56,7 @@ public class Jelly : MonoBehaviour
 
         Vector2 bounceVector = player.transform.position - gameObject.transform.position;
 
-        if (bounceVector.y > 0)
+        if (bounceVector.x < 0)
         {
             anim.Play("idleleftjelly");
         }
