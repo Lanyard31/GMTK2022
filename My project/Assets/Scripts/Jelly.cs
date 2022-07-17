@@ -40,12 +40,6 @@ public class Jelly : MonoBehaviour
         if (HP <= 0)
             Destroy(gameObject);
 
-
-
-
-
-
-        //transform.Translate(Vector2.MoveTowards(transform.position, player.transform.position, range) * speed * Time.deltaTime);
     }
 
     
@@ -72,9 +66,8 @@ public class Jelly : MonoBehaviour
         }
 
 
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 15)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 12)
         {
-            Debug.Log("The Distance between the objects is greater than 15");
             return;
         }
 
@@ -83,7 +76,6 @@ public class Jelly : MonoBehaviour
         {
             bounceVector = bounceVector.normalized;
             //bounceVector = (target.transform.position, gameObject.transform.position);
-            Debug.Log("The Distance between the objects is more than 15");
             jellyRigidBody2D.AddForce(bounceVector * 0.05f, ForceMode2D.Impulse);
         }
     }

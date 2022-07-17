@@ -369,12 +369,43 @@ public class Player : MonoBehaviour
             {
                 var collider = collision.gameObject.GetComponent<Jelly>();
                 collider.TakeDamage();
+                PlayerDamage(8);
+                if (powerSlide == true)
+                {
+                    collider.TakeDamage();
+                }
+            }
+
+            if (collision.transform.tag == "Proj")
+            {
+                var collider = collision.gameObject.GetComponent<enemyProjectile>();
+                collider.TakeDamage();
+                PlayerDamage(3);
+                if (powerSlide == true)
+                {
+                    collider.TakeDamage();
+                }
+            }
+
+            if (collision.transform.tag == "Wyrm")
+            {
+                var collider = collision.gameObject.GetComponent<Wyrm>();
+                collider.TakeDamage();
                 PlayerDamage(10);
                 if (powerSlide == true)
                 {
                     collider.TakeDamage();
                 }
             }
+
+            if (collision.transform.tag == "Gas")
+            {
+                var collider = collision.gameObject;
+                playerHP = 100;
+                _playerHealthBar.UpdateHealthBar(maxHealth, playerHP);
+                Destroy(collider);
+            }
+
 
             // Maybe Add for Walls
 
@@ -417,7 +448,10 @@ public class Player : MonoBehaviour
         if (Dice1 == 2)
         {
             Ability1 = "Shotgun";
-            FireShotgun();
+            if (numberOfShells == 0)
+            {
+                FireShotgun();
+            }
         }
         if (Dice1 == 3)
         {
@@ -450,7 +484,10 @@ public class Player : MonoBehaviour
         if (Dice2 == 2)
         {
             Ability2 = "Shotgun";
-            FireShotgun();
+            if (numberOfShells == 0)
+            {
+                FireShotgun();
+            }
         }
         if (Dice2 == 3)
         {

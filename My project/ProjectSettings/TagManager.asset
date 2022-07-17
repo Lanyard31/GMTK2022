@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Jelly
   - Wrecker
+  - Proj
+  - Wyrm
+  - Gas
   layers:
   - Default
   - TransparentFX

@@ -45,14 +45,12 @@ public class Wrecker : MonoBehaviour
 
         if (Vector3.Distance(target.transform.position, gameObject.transform.position) < 6.5)
         {
-            Debug.Log("The Distance between the objects is less than 15");
             return;
         }
         else
         {
             Vector2 bounceVector = target.transform.position - gameObject.transform.position;
             //bounceVector = (target.transform.position, gameObject.transform.position);
-            Debug.Log("The Distance between the objects is more than 15");
             wreckerRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
         }
 
