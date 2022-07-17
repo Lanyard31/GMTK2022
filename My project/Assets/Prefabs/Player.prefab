@@ -5162,6 +5162,9 @@ MonoBehaviour:
   wreckerPrefab: {fileID: 3885758644815055034, guid: 82b0f089d826dfd45b8f334b362188f6, type: 3}
   projectilePrefab: {fileID: 4785853124982220649, guid: 55c842f3ffa8b0b46bb1ae1b2638b854, type: 3}
   shotgunPosition: {fileID: 573741455932994605}
+  Nova: {fileID: 8790972452640978353, guid: 62a0402f68b8add4091b38d2d953dfd3, type: 3}
+  CarSprite: {fileID: 2324772823114005652}
+  Flipper: {fileID: 2072037701613064096}
 --- !u!50 &2324772823221924635
 Rigidbody2D:
   serializedVersion: 4

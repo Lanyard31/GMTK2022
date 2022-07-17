@@ -28,7 +28,7 @@ public class Jelly : MonoBehaviour
         healthBar.UpdateHealthBar(maxHealth, HP);
         player = FindObjectOfType<Player>();
         quat = transform.rotation;
-        AssignHealth = Random.Range(50, 150);
+        AssignHealth = Random.Range(20, 100);
         HP = AssignHealth;
         maxHealth = AssignHealth;
         jellyRigidBody2D = GetComponent<Rigidbody2D>();
@@ -76,7 +76,7 @@ public class Jelly : MonoBehaviour
         {
             bounceVector = bounceVector.normalized;
             //bounceVector = (target.transform.position, gameObject.transform.position);
-            jellyRigidBody2D.AddForce(bounceVector * 0.04f, ForceMode2D.Impulse);
+            jellyRigidBody2D.AddForce(bounceVector * 0.035f, ForceMode2D.Impulse);
         }
     }
 

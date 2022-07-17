@@ -12,6 +12,7 @@ public class musicManager : MonoBehaviour
     {
         _audio = FindObjectOfType<AudioManager>();
         _audio.Play("theme2");
+        _audio.Play("Engine");
     }
 
 

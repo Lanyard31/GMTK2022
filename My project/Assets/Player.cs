@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     bool shielded;
     bool powerSlide;
     bool ballSummoned;
+    bool dead;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -63,6 +64,13 @@ public class Player : MonoBehaviour
     public GameObject wreckerPrefab;
     public GameObject projectilePrefab;
     public GameObject shotgunPosition;
+    AudioSource audio;
+
+    public GameObject Nova;
+
+    public GameObject CarSprite;
+    public GameObject Flipper;
+   
 
 
 
@@ -81,6 +89,7 @@ public class Player : MonoBehaviour
 
         _playerHealthBar = FindObjectOfType<playerHealthBar>();
 
+        audio = GetComponent<AudioSource>();
 
         ShieldsDown();
 
@@ -91,14 +100,26 @@ public class Player : MonoBehaviour
         particleSystemEmissionModuleSlide.rateOverTime = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
+        ///DEATH CHECK
+        if (playerHP <= 0)
+        {
+            Instantiate(Nova, this.transform.position, Quaternion.identity);
+            dead = true;
+            CarSprite.SetActive(false);
+            Flipper.SetActive(false);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+
+        }
     }
 
     private void FixedUpdate()
     {
+        if (dead == true)
+            return;
+
         ApplyEngineForce();
 
         KillOrthogonalVelocity();
@@ -362,6 +383,9 @@ public class Player : MonoBehaviour
             bounceVector.y = contact.normal.y * bounceFactor;
             carRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
             //PlayerDamage(10);
+            audio.Play();
+            PlayerDamage(1);
+
 
 
 
