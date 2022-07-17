@@ -28,6 +28,25 @@ public class DiceRoll : MonoBehaviour
             rollable = false;
             Dice1 = Random.Range(1, 7);
             Dice2 = Random.Range(1, 7);
+            if (Dice1 == 3)
+            {
+                Dice1 = 4;
+            }
+            while (Dice2 == 3)
+            {
+                Dice2 = 6;
+            }
+
+            while (Dice1 == 5)
+            {
+                Dice1 = 4;
+            }
+            while (Dice2 == 5)
+            {
+                Dice2 = 6;
+            }
+
+
             while (Dice2 == Dice1)
             {
                 Dice2 = Random.Range(1, 7);

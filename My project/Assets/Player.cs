@@ -106,8 +106,11 @@ public class Player : MonoBehaviour
         ///DEATH CHECK
         if (playerHP <= 0)
         {
-            Instantiate(Nova, this.transform.position, Quaternion.identity);
-            dead = true;
+            if (dead == false)
+            {
+                dead = true;
+                Instantiate(Nova, this.transform.position, Quaternion.identity);
+            }
             CarSprite.SetActive(false);
             Flipper.SetActive(false);
             this.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
@@ -397,6 +400,8 @@ public class Player : MonoBehaviour
                 if (powerSlide == true)
                 {
                     collider.TakeDamage();
+                    collider.TakeDamage();
+                    collider.TakeDamage();
                 }
             }
 
@@ -419,6 +424,9 @@ public class Player : MonoBehaviour
                 if (powerSlide == true)
                 {
                     collider.TakeDamage();
+                    collider.TakeDamage();
+                    collider.TakeDamage();
+
                 }
             }
 
@@ -575,7 +583,8 @@ public class Player : MonoBehaviour
         {
             numberOfShells += 1;
             GameObject Shotgun = new GameObject("Shotgun");
-            Vector3 objectPOS = shotgunPosition.transform.position;
+            var ok = shotgunPosition.transform.position.y + Random.Range(-0.2f, 0.2f);
+            Vector3 objectPOS = new Vector3 (shotgunPosition.transform.position.x, ok, shotgunPosition.transform.position.z);
             GameObject newGameObject = Instantiate(projectilePrefab, objectPOS, Quaternion.identity);
         }
     }

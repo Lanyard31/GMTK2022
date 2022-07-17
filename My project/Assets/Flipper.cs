@@ -9,6 +9,7 @@ public class Flipper : MonoBehaviour
     SpriteRenderer spriteRenderer;
     float rot;
     Quaternion quat;
+    AudioSource audio;
 
 
     void Start()
@@ -17,6 +18,7 @@ public class Flipper : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         quat = transform.rotation;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class Flipper : MonoBehaviour
             spriteRenderer.enabled = true;
             anim.enabled = true;
             rot = player.rotationAngle;
+            LoopComplete();
             if (rot >= 0 && rot < 90)
                 anim.Play("flipUpLeft2");
             if (rot >= 270 && rot < 360)
@@ -50,6 +53,6 @@ public class Flipper : MonoBehaviour
 
     public void LoopComplete()
     {
-
+        //audio.Play();
     }
 }

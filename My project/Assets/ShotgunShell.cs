@@ -12,7 +12,7 @@ public class ShotgunShell : MonoBehaviour
     void Start()
     {
         shellRigidBody2D = GetComponent<Rigidbody2D>();
-        Vector2 RandomVector = new Vector2(Random.Range(-0.8f, 0.8f), 0f);
+        Vector2 RandomVector = new Vector2(Random.Range(-0.4f, 0.4f), 0f);
         shellRigidBody2D.AddForce(RandomVector, ForceMode2D.Impulse);
         Invoke("SelfDestruct", 4f);
     }

@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0056660175, y: -0.000000059604645}
+  m_Offset: {x: -0.0028531551, y: -0.0028128028}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7334261, y: 0.19672358}
+  m_Size: {x: 0.25524902, y: 0.1348418}
   m_EdgeRadius: 0
 --- !u!114 &6328162431541209083
 MonoBehaviour:
@@ -127,8 +127,5 @@ MonoBehaviour:
   spritelist:
   - {fileID: 21300000, guid: 2f590ee1f8ffb3745a0c68987a63eec4, type: 3}
   - {fileID: 21300000, guid: 443c254a280c5c0498c35292a97813f0, type: 3}
-  - {fileID: 21300000, guid: 1cd587aec49e83c4b894750c38504fd2, type: 3}
-  - {fileID: 21300000, guid: e1fc95a71cb1b9247b52597afebcd1ec, type: 3}
   - {fileID: 21300000, guid: 0ba867c9763c67e41bfa8e6cabfc4d08, type: 3}
-  - {fileID: 21300000, guid: bdd1f064b7d61844289b38f48ea6bf09, type: 3}
-  - {fileID: 21300000, guid: 28723c6e1892efa49a1b799ce568802a, type: 3}
+  - {fileID: 21300000, guid: 1f8d32db33a257e44bfdb147b4f06f0f, type: 3}
