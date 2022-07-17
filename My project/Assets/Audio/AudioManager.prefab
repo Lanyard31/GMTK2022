@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5423184344745958563}
   - component: {fileID: 5423184344745958560}
+  - component: {fileID: 8204086169467574998}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -44,5 +45,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be324437f1e8d57429331df64c3d7d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: theme1
+    clip: {fileID: 8300000, guid: b1b68553f4f77734390ba9302a35edd6, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: theme2
+    clip: {fileID: 8300000, guid: a6359bb17f634434091100eed3648ef1, type: 3}
+    volume: 0.569
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: theme3
+    clip: {fileID: 8300000, guid: 5640181e21e77bc459af87ff25d6844b, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: theme4
+    clip: {fileID: 8300000, guid: 1b44a762012adb94e920c86a5bfe944b, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
   mixerGroup: {fileID: 0}
+--- !u!114 &8204086169467574998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5423184344745958561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26936acafbd9ea46a2e40a8b6814860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
