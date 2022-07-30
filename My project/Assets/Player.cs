@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     bool powerSlide;
     bool ballSummoned;
     bool dead;
+    bool shotgunFired;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -370,7 +371,7 @@ public class Player : MonoBehaviour
         jumpMax = false;
         ballSummoned = false;
         DestroyBalls();
-        DestroyShells();
+        //DestroyShells();
         Invoke("AbilityCheck", 0.2f);
 
     }
@@ -380,15 +381,24 @@ public class Player : MonoBehaviour
         // Debug-draw all contact points and normals
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            Debug.DrawRay(contact.point, contact.normal, Color.red);
-            Vector2 bounceVector = contact.normal;
-            bounceVector.x = contact.normal.x * bounceFactor;
-            bounceVector.y = contact.normal.y * bounceFactor;
-            carRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
-            //PlayerDamage(10);
-            audio.Play();
-            PlayerDamage(1);
-
+            if (collision.transform.tag == "Shell")
+            {
+                Vector2 bounceVectorShell = contact.normal;
+                bounceVectorShell.x = contact.normal.x * (bounceFactor * 0.2f);
+                bounceVectorShell.y = contact.normal.y * (bounceFactor * 0.2f);
+                carRigidBody2D.AddForce(bounceVectorShell, ForceMode2D.Impulse);
+                audio.Play();
+            }
+            else
+            {
+                Debug.DrawRay(contact.point, contact.normal, Color.red);
+                Vector2 bounceVector = contact.normal;
+                bounceVector.x = contact.normal.x * bounceFactor;
+                bounceVector.y = contact.normal.y * bounceFactor;
+                carRigidBody2D.AddForce(bounceVector, ForceMode2D.Impulse);
+                audio.Play();
+                PlayerDamage(1);
+            }
 
 
 
@@ -397,7 +407,7 @@ public class Player : MonoBehaviour
                 var collider = collision.gameObject.GetComponent<Jelly>();
                 collider.TakeDamage();
                 PlayerDamage(8);
-                if (powerSlide == true)
+                if (powerSlide == true && drift == true)
                 {
                     collider.TakeDamage();
                     collider.TakeDamage();
@@ -421,7 +431,7 @@ public class Player : MonoBehaviour
                 var collider = collision.gameObject.GetComponent<Wyrm>();
                 collider.TakeDamage();
                 PlayerDamage(10);
-                if (powerSlide == true)
+                if (powerSlide == true && drift == true)
                 {
                     collider.TakeDamage();
                     collider.TakeDamage();
@@ -480,7 +490,8 @@ public class Player : MonoBehaviour
         if (Dice1 == 2)
         {
             Ability1 = "Shotgun";
-            if (numberOfShells == 0)
+            //if (numberOfShells == 0)
+            if (shotgunFired == false)
             {
                 FireShotgun();
             }
@@ -516,7 +527,8 @@ public class Player : MonoBehaviour
         if (Dice2 == 2)
         {
             Ability2 = "Shotgun";
-            if (numberOfShells == 0)
+            //if (numberOfShells == 0)
+            if (shotgunFired == false)
             {
                 FireShotgun();
             }
@@ -579,19 +591,23 @@ public class Player : MonoBehaviour
 
     public void FireShotgun()
     {
-        if (numberOfShells < 8)
-        {
-            numberOfShells += 1;
+        //if (numberOfShells < 8)
+        if (shotgunFired == false)
+            {
+            shotgunFired = true;
+            //numberOfShells += 1;
             GameObject Shotgun = new GameObject("Shotgun");
-            var ok = shotgunPosition.transform.position.y + Random.Range(-0.2f, 0.2f);
+            var ok = shotgunPosition.transform.position.y; //+ Random.Range(-0.2f, 0.2f);
             Vector3 objectPOS = new Vector3 (shotgunPosition.transform.position.x, ok, shotgunPosition.transform.position.z);
             GameObject newGameObject = Instantiate(projectilePrefab, objectPOS, Quaternion.identity);
+            Invoke("DestroyShells", 0.18f);
         }
     }
 
     public void DestroyShells()
     {
-        numberOfShells = 0;
+        //numberOfShells = 0;
+        shotgunFired = false;
     }
 
 

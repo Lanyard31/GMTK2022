@@ -20,9 +20,11 @@ public class Wyrm : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        AssignHealth = Random.Range(100, 200);
+        AssignHealth = Random.Range(100, 150);
+        HP = AssignHealth;
+        maxHealth = AssignHealth;
         healthBar = GetComponentInChildren<HealthBar>();
-        healthBar.UpdateHealthBar(maxHealth, HP);
+        //healthBar.UpdateHealthBar(maxHealth, HP);
         player = FindObjectOfType<Player>();
 
 
@@ -74,7 +76,7 @@ public class Wyrm : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log("Took Damage");
+        //Debug.Log("Took Damage" + HP + "/" + maxHealth);
         HP -= 50;
         healthBar.UpdateHealthBar(maxHealth, HP);
     }

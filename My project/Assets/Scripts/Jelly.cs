@@ -25,7 +25,7 @@ public class Jelly : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         healthBar = GetComponentInChildren<HealthBar>();
-        healthBar.UpdateHealthBar(maxHealth, HP);
+        //healthBar.UpdateHealthBar(maxHealth, HP);
         player = FindObjectOfType<Player>();
         quat = transform.rotation;
         AssignHealth = Random.Range(20, 100);

@@ -9,6 +9,7 @@ TagManager:
   - Proj
   - Wyrm
   - Gas
+  - Shell
   layers:
   - Default
   - TransparentFX
