@@ -77,6 +77,17 @@ public class Wrecker : MonoBehaviour
                 collider.TakeDamage();
             }
 
+            if (collision.transform.tag == "Wyrm")
+            {
+                var collider = collision.gameObject.GetComponent<Wyrm>();
+                collider.TakeDamage();
+            }
+
+            if (collision.transform.tag == "Proj")
+            {
+                var collider = collision.gameObject.GetComponent<enemyProjectile>();
+                collider.TakeDamage();
+            }
         }
     }
 

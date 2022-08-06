@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6545857063959570466}
   - component: {fileID: 4423104442381032718}
   - component: {fileID: 4423104442381032705}
+  - component: {fileID: 1145294499359061989}
   m_Layer: 0
   m_Name: wreckball 1
   m_TagString: Wrecker
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1832915759
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ca68a947ebc47a429c9beaaede23b3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139,8 +140,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1832915759
-  m_SortingLayer: 1
+  m_SortingLayerID: -268068475
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -237,3 +238,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.06998533}
   serializedVersion: 2
   m_Radius: 0.6810915
+--- !u!114 &1145294499359061989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885758644815055034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ede7ea72d893a647b3f0eb34a72ebba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lr: {fileID: 0}
+  SortingLayer: GroundSquares
+  OrderInLayer: 0

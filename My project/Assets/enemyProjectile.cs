@@ -18,7 +18,7 @@ public class enemyProjectile : MonoBehaviour
 
         Vector2 targetVector = player.transform.position - gameObject.transform.position;
         targetVector = targetVector.normalized;
-        projRigid.AddForce(targetVector * 2.75f, ForceMode2D.Impulse);
+        projRigid.AddForce(targetVector * 3.6f, ForceMode2D.Impulse);
 
         Invoke("SelfDestruct", 4f);
 

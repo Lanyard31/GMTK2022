@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     bool ballSummoned;
     bool dead;
     bool shotgunFired;
+    bool DriftSoundFXPlayed;
 
     float accelerationInput = 0;
     float steeringInput = 0;
@@ -71,7 +72,11 @@ public class Player : MonoBehaviour
 
     public GameObject CarSprite;
     public GameObject Flipper;
-   
+
+    public AudioSource Screech;
+    public AudioSource Gravel;
+    public AudioSource Screwdriver;
+    public AudioSource Wrench;
 
 
 
@@ -93,6 +98,7 @@ public class Player : MonoBehaviour
         audio = GetComponent<AudioSource>();
 
         ShieldsDown();
+
 
     }
 
@@ -117,6 +123,29 @@ public class Player : MonoBehaviour
             this.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
 
         }
+        //Drift Sounds
+        if (drift == true)
+        {
+            if (Gravel.isPlaying == false && DriftSoundFXPlayed == false)
+            {
+                //Screech.Play();
+                DriftSoundFXPlayed = true;
+                Gravel.Play();
+                Invoke("DriftSoundFXBuffer", 2.5f);
+
+            }
+        }
+        if (drift == false)
+        {
+            Gravel.Stop();
+            DriftSoundFXPlayed = false;
+        }
+
+    }
+
+    private void DriftSoundFXBuffer()
+    {
+        DriftSoundFXPlayed = false;
     }
 
     private void FixedUpdate()
@@ -446,6 +475,8 @@ public class Player : MonoBehaviour
                 playerHP = 100;
                 _playerHealthBar.UpdateHealthBar(maxHealth, playerHP);
                 Destroy(collider);
+                Screwdriver.Play();
+                Wrench.Play();
             }
 
 
@@ -575,7 +606,6 @@ public class Player : MonoBehaviour
         {
             ballSummoned = true;
             numberOfBalls += 1;
-            GameObject Wrecker = new GameObject("Wrecker");
             Vector3 objectPOS = this.transform.position;
             GameObject newGameObject = Instantiate(wreckerPrefab, objectPOS, Quaternion.identity);
         }
@@ -583,8 +613,11 @@ public class Player : MonoBehaviour
 
     public void DestroyBalls()
     {
-        GameObject wrecker = GameObject.FindWithTag("Wrecker");
-        Destroy(wrecker);
+        GameObject[] wreckers = GameObject.FindGameObjectsWithTag("Wrecker");
+        foreach (GameObject w in wreckers)
+        {
+            Destroy(w);
+        }
         numberOfBalls = 0;
     }
 
@@ -596,7 +629,7 @@ public class Player : MonoBehaviour
             {
             shotgunFired = true;
             //numberOfShells += 1;
-            GameObject Shotgun = new GameObject("Shotgun");
+            //GameObject Shotgun = new GameObject("Shotgun");
             var ok = shotgunPosition.transform.position.y; //+ Random.Range(-0.2f, 0.2f);
             Vector3 objectPOS = new Vector3 (shotgunPosition.transform.position.x, ok, shotgunPosition.transform.position.z);
             GameObject newGameObject = Instantiate(projectilePrefab, objectPOS, Quaternion.identity);

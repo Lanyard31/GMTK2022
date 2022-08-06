@@ -61,6 +61,12 @@ public class ShotgunShell : MonoBehaviour
                 collider.TakeDamage();
                 Destroy(gameObject);
             }
+            if (collision.transform.tag == "Shell")
+            {
+                Destroy(gameObject);
+            }
+
+
         }
     }
 
