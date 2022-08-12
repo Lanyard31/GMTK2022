@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     bool shielded;
     bool powerSlide;
     bool ballSummoned;
-    bool dead;
+    public bool dead;
     bool shotgunFired;
     bool DriftSoundFXPlayed;
 
